@@ -2,16 +2,29 @@ package ru.mrsu.test.project.clients.service;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 public class Address {
-    private int id;           // идентификатор
-    private String city;         // город
-    private String street;       // улица
-    private int house;        // дом
-    private int floor;        // этаж
-    private int flatNumber;   // квартира
+    @Id
+    @Column(name = "address_id")
+    private int id;
+    @Column(name = "address_city")
+    private String city;
+    @Column(name = "addresss_street")
+    private String street;
+    @Column(name = "address_house")
+    private int house;
+    @Column(name = "address_floor")
+    private int floor;
+    @Column(name = "flat_number")
+    private int flatNumber;
 
 
     @Override

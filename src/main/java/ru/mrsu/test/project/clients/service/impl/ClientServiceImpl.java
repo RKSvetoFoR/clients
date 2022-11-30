@@ -1,5 +1,6 @@
 package ru.mrsu.test.project.clients.service.impl;
 
+import ru.mrsu.test.project.clients.jpa.ClientRepository;
 import ru.mrsu.test.project.clients.service.Client;
 import ru.mrsu.test.project.clients.service.ClientService;
 import org.springframework.core.io.Resource;
@@ -16,8 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 @Service
 public class ClientServiceImpl implements ClientService {
+    private final ClientRepository clientRepository;
     private final ResourceLoader resourceLoader;
-    public ClientServiceImpl(ResourceLoader resourceLoader) {
+    public ClientServiceImpl(ClientRepository clientRepository, ResourceLoader resourceLoader) {
+        this.clientRepository = clientRepository;
         this.resourceLoader = resourceLoader;
     }
     @Override
@@ -26,7 +29,7 @@ public class ClientServiceImpl implements ClientService {
         XMLStreamReader parser = null;
 
         try {
-            Resource resource = resourceLoader.getResource("resources\\client.xml");
+            Resource resource = resourceLoader.getResource("classpath:client.xml");
             InputStream inputStream = resource.getInputStream();
             parser = factory.createXMLStreamReader(inputStream);
         } catch (FileNotFoundException e) {

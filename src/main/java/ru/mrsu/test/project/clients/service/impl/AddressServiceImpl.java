@@ -1,5 +1,6 @@
 package ru.mrsu.test.project.clients.service.impl;
 
+import ru.mrsu.test.project.clients.jpa.AddressRepository;
 import ru.mrsu.test.project.clients.service.Address;
 import ru.mrsu.test.project.clients.service.AddressService;
 import org.springframework.core.io.Resource;
@@ -16,8 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 @Service
 public class AddressServiceImpl implements AddressService {
+    private final AddressRepository addressRepository;
     private final ResourceLoader resourceLoader;
-    public AddressServiceImpl(ResourceLoader resourceLoader) {
+    public AddressServiceImpl(AddressRepository addressRepository, ResourceLoader resourceLoader) {
+        this.addressRepository = addressRepository;
         this.resourceLoader = resourceLoader;
     }
     @Override
@@ -26,7 +29,7 @@ public class AddressServiceImpl implements AddressService {
         XMLStreamReader parser = null;
 
         try {
-            Resource resource = resourceLoader.getResource("resources\\address.xml");
+            Resource resource = resourceLoader.getResource("classpath:address.xml");
             InputStream inputStream = resource.getInputStream();
             parser = factory.createXMLStreamReader(inputStream);
         } catch (FileNotFoundException e) {
