@@ -1,5 +1,6 @@
 package ru.mrsu.test.project.clients.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.mrsu.test.project.clients.jpa.ClientRepository;
 import ru.mrsu.test.project.clients.service.Client;
 import ru.mrsu.test.project.clients.service.ClientService;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Service
 public class ClientServiceImpl implements ClientService {
+    @Autowired
     private final ClientRepository clientRepository;
     private final ResourceLoader resourceLoader;
     public ClientServiceImpl(ClientRepository clientRepository, ResourceLoader resourceLoader) {
@@ -65,6 +67,9 @@ public class ClientServiceImpl implements ClientService {
             System.out.println(e.getMessage());
         }
         return clientList;
+    }
+    public List<Client> setClients(){
+        return clientRepository.saveAll(getClients());
     }
 
 }

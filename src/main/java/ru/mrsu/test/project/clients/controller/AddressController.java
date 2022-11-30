@@ -1,5 +1,6 @@
 package ru.mrsu.test.project.clients.controller;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import ru.mrsu.test.project.clients.service.Address;
 import ru.mrsu.test.project.clients.service.AddressService;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,11 @@ public class AddressController {
     @GetMapping("internal/addresses")
     public List<Address> getAddress() {
         return addressService.getAddresses();
+    }
+
+    @PostMapping("internal/addresses")
+    public List<Address> setAddress() {
+        return addressService.setAddresses();
     }
 }
 

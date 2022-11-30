@@ -6,5 +6,6 @@ import java.util.List;
 public interface AddressService {
 
     List<Address> getAddresses();
+    List<Address> setAddresses();
 
 }

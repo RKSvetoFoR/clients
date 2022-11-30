@@ -1,11 +1,13 @@
 package ru.mrsu.test.project.clients.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.mrsu.test.project.clients.jpa.AddressRepository;
 import ru.mrsu.test.project.clients.service.Address;
 import ru.mrsu.test.project.clients.service.AddressService;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
+
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Service
 public class AddressServiceImpl implements AddressService {
+    @Autowired
     private final AddressRepository addressRepository;
     private final ResourceLoader resourceLoader;
     public AddressServiceImpl(AddressRepository addressRepository, ResourceLoader resourceLoader) {
@@ -70,5 +73,7 @@ public class AddressServiceImpl implements AddressService {
         }
         return addressList;
     }
-
+    public List<Address> setAddresses(){
+        return addressRepository.saveAll(getAddresses());
+    }
 }

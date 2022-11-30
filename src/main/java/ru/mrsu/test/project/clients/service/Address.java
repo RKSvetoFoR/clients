@@ -3,9 +3,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -38,4 +37,8 @@ public class Address {
                 ", flatNumber=" + flatNumber +
                 '}';
     }
+
+    @OneToMany
+    @JoinColumn(name="address_id")
+    private List<Client> clientId;
 }
